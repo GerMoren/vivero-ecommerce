@@ -23,7 +23,10 @@ export default function Review(props) {
     };
 
     axios
-      .post(`http://localhost:3000/products/${props.productId}/review`, data)
+      .post(
+        `https://apivivero.herokuapp.com/products/${props.productId}/review`,
+        data
+      )
       .then((review) => {
         console.log(review);
       })

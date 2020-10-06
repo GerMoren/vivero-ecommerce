@@ -58,7 +58,7 @@ export default function Product({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products/${id}/reviews`, {
+      .get(`https://apivivero.herokuapp.com/products/${id}/reviews`, {
         withCredentials: true,
       })
       .then((res) => {

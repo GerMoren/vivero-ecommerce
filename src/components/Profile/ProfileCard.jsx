@@ -31,7 +31,7 @@ export default function Profile({ id, onClose }) {
     // if (usuario) {
     axios
 
-      .get(`http://localhost:3000/me`, { withCredentials: true })
+      .get(`https://apivivero.herokuapp.com/me`, { withCredentials: true })
 
       .then((res) => {
         console.log(res);
@@ -53,9 +53,11 @@ export default function Profile({ id, onClose }) {
       email: input.email,
       name: input.name,
     };
-    axios.put(`http://localhost:3000/users/${user.id}`, data).then((res) => {
-      alert("Actualizado correctamente");
-    });
+    axios
+      .put(`https://apivivero.herokuapp.com/users/${user.id}`, data)
+      .then((res) => {
+        alert("Actualizado correctamente");
+      });
   };
 
   const onViewReset = function (id) {

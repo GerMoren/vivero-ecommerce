@@ -50,7 +50,7 @@ function ResetPw(props) {
     e.preventDefault();
 
     axios
-      .put("http://localhost:3000/reset/passwordupdate", data)
+      .put("https://apivivero.herokuapp.com/reset/passwordupdate", data)
       .then((res) => {
         alert("Contraseña actualizada Correctamente");
         props.onClose(false);
@@ -138,17 +138,19 @@ function LoginPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) {
-      axios.post("http://localhost:3000/reset/user", { email }).then((res) => {
-        if (res.data) {
-          //renderizar componente resetear
-          setRenderReset(true);
-          return console.log("tengo que resetear");
-        }
-        dispatch(userActions.login(email, password));
-        dispatch(alertActions.clear());
+      axios
+        .post("https://apivivero.herokuapp.com/reset/user", { email })
+        .then((res) => {
+          if (res.data) {
+            //renderizar componente resetear
+            setRenderReset(true);
+            return console.log("tengo que resetear");
+          }
+          dispatch(userActions.login(email, password));
+          dispatch(alertActions.clear());
 
-        return console.log("safe fiuf");
-      });
+          return console.log("safe fiuf");
+        });
     }
     setSuccess(true);
   };
@@ -246,7 +248,10 @@ function LoginPage(props) {
               </Grid>
             </Grid>
           </form>
-          <a className={style.google} href="http://localhost:3000/auth/google">
+          <a
+            className={style.google}
+            href="https://apivivero.herokuapp.com/auth/google"
+          >
             {/* <svg className={style.icon}>{icon}</svg> */}
             <img className={style.icon} src={icon} />
             Inicia Sesion con Google

@@ -66,7 +66,7 @@ function AddUser(props) {
       role: "admin",
     };
     axios
-      .post("http://localhost:3000/users", data)
+      .post("https://apivivero.herokuapp.com/users", data)
       .then((res) => {
         if (res.status === 201) {
           setInfo({

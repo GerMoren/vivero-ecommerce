@@ -10,7 +10,7 @@ export default function ViewUser({ id, onClose }) {
 
   useEffect(() => {
     if (!user) {
-      axios.get(`http://localhost:3000/users/${id}`).then((res) => {
+      axios.get(`https://apivivero.herokuapp.com/users/${id}`).then((res) => {
         setUser(res.data);
         setInput(res.data);
       });
@@ -31,13 +31,15 @@ export default function ViewUser({ id, onClose }) {
       lastname: input.lastname,
       role: input.role,
     };
-    axios.put(`http://localhost:3000/users/${id}`, data).then((res) => {
-      alert("Actualizado correctamente");
-    });
+    axios
+      .put(`https://apivivero.herokuapp.com/users/${id}`, data)
+      .then((res) => {
+        alert("Actualizado correctamente");
+      });
   };
 
   const onDelete = function () {
-    axios.delete(`http://localhost:3000/users/${id}`).then((res) => {
+    axios.delete(`https://apivivero.herokuapp.com/users/${id}`).then((res) => {
       alert("Eliminado correctamente");
     });
   };
