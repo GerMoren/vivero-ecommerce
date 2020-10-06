@@ -23,10 +23,12 @@ export const userService = {
 };
 
 function loginWithGoogle() {
-  return axios.get(`http://localhost:3000/auth/google`).then((user) => {
-    localStorage.setItem("user", JSON.stringify(user.data));
-    return user.data;
-  });
+  return axios
+    .get(`https://apivivero.herokuapp.com/auth/google`)
+    .then((user) => {
+      localStorage.setItem("user", JSON.stringify(user.data));
+      return user.data;
+    });
 }
 
 function login(email, password) {
@@ -36,7 +38,7 @@ function login(email, password) {
   };
 
   return axios
-    .post(`http://localhost:3000/auth/login`, requestOptions, {
+    .post(`https://apivivero.herokuapp.com/auth/login`, requestOptions, {
       withCredentials: true,
     })
     .then((user) => {
@@ -48,9 +50,11 @@ function login(email, password) {
 
 function logout() {
   // remove user from local storage to log user out
-  return axios.get(`http://localhost:3000/auth/logout`).then((res) => {
-    localStorage.removeItem("user");
-  });
+  return axios
+    .get(`https://apivivero.herokuapp.com/auth/logout`)
+    .then((res) => {
+      localStorage.removeItem("user");
+    });
 }
 
 function getAll() {
@@ -59,7 +63,7 @@ function getAll() {
     headers: authHeader(),
   };
 
-  return axios.get(`http://localhost:3000/users`, requestOptions);
+  return axios.get(`https://apivivero.herokuapp.com/users`, requestOptions);
   // .then
   // // handleResponse
   // ();
@@ -71,11 +75,14 @@ function getById(id) {
     headers: authHeader(),
   };
 
-  return axios.get(`http://localhost:3000/users/${id}`, requestOptions);
+  return axios.get(
+    `https://apivivero.herokuapp.com/users/${id}`,
+    requestOptions
+  );
 }
 
 function register(user) {
-  return axios.post(`http://localhost:3000/users/`, user);
+  return axios.post(`https://apivivero.herokuapp.com/users/`, user);
 }
 
 function update(user) {
@@ -86,7 +93,7 @@ function update(user) {
   };
 
   return axios.put(
-    `http://localhost:3000/users/${user.data.id}`,
+    `https://apivivero.herokuapp.com/users/${user.data.id}`,
     requestOptions
   );
 }
@@ -98,7 +105,10 @@ function _delete(id) {
     headers: authHeader(),
   };
 
-  return axios.delete(`http://localhost:3000/users/${id}`, requestOptions);
+  return axios.delete(
+    `https://apivivero.herokuapp.com/users/${id}`,
+    requestOptions
+  );
 }
 
 // function handleResponse(response) {

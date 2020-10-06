@@ -33,14 +33,14 @@ export default function UsersPanel() {
 
   const getUsers = function (type) {
     if (type === "mounted") {
-      axios.get("http://localhost:3000/users").then((res) => {
+      axios.get("https://apivivero.herokuapp.com/users").then((res) => {
         if (!users) {
           setUsers(res.data);
         }
       });
     }
     if (type === "update") {
-      axios.get("http://localhost:3000/users").then((res) => {
+      axios.get("https://apivivero.herokuapp.com/users").then((res) => {
         setUsers(res.data);
       });
     }

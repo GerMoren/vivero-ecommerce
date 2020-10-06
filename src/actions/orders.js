@@ -6,11 +6,13 @@ export const FETCH_ORDERS = "FETCH_ORDERS";
 
 export const editOrder = (data, id) => {
   return (dispatch) => {
-    axios.put(`http://localhost:3000/orders/${id}`, data).then((order) => {
-      dispatch({
-        type: EDIT_ORDER,
+    axios
+      .put(`https://apivivero.herokuapp.com/orders/${id}`, data)
+      .then((order) => {
+        dispatch({
+          type: EDIT_ORDER,
+        });
       });
-    });
   };
 };
 
@@ -20,18 +22,20 @@ export const fetchOrders = (state) => {
     statequery = `?state=${state}`;
   }
   return (dispatch) => {
-    axios.get(`http://localhost:3000/orders${statequery}`).then((orders) => {
-      dispatch({
-        type: FETCH_ORDERS,
-        orders: orders.data,
+    axios
+      .get(`https://apivivero.herokuapp.com/orders${statequery}`)
+      .then((orders) => {
+        dispatch({
+          type: FETCH_ORDERS,
+          orders: orders.data,
+        });
       });
-    });
   };
 };
 
 export const getOrder = (id) => {
   return (dispatch) => {
-    axios.get(`http://localhost:3000/orders/${id}`).then((order) => {
+    axios.get(`https://apivivero.herokuapp.com/orders/${id}`).then((order) => {
       dispatch({
         type: GET_ORDER,
         order: order.data,

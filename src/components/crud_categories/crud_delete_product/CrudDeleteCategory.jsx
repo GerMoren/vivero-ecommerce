@@ -21,7 +21,7 @@ export default function CrudDeleteProduct({ onClose }) {
   const [success, setSuccess] = useState(false);
 
   // useEffect(() => {
-  //   axios.get(`http://localhost:3000/products/category/${id}`).then(function (response) {
+  //   axios.get(`https://apivivero.herokuapp.com/products/category/${id}`).then(function (response) {
   //     console.log(response.data)
   //     setCategory({
   //       name: response.data.name,
@@ -37,7 +37,7 @@ export default function CrudDeleteProduct({ onClose }) {
     setSuccess(true);
 
     // axios
-    //   .delete(`http://localhost:3000/products/category/${id}`)
+    //   .delete(`https://apivivero.herokuapp.com/products/category/${id}`)
     //   .then(function (res) {
     //     setSuccess(true);
     //     setTimeout(function () {

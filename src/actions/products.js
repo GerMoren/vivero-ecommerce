@@ -13,7 +13,7 @@ export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 //Trae todos los products productos del back y se lo manda al reducer
 export const getProducts = () => {
   return (dispatch) => {
-    axios.get(`http://localhost:3000/products`).then((products) => {
+    axios.get(`https://apivivero.herokuapp.com/products`).then((products) => {
       dispatch({
         type: GET_PRODUCTS,
         products: products.data,
@@ -25,12 +25,14 @@ export const getProducts = () => {
 //trae un unico producto por id del back y lo manda al reducer
 export const getProduct = (id) => {
   return (dispatch) => {
-    axios.get(`http://localhost:3000/products/${id}`).then((product) => {
-      dispatch({
-        type: GET_PRODUCT,
-        product: product.data,
+    axios
+      .get(`https://apivivero.herokuapp.com/products/${id}`)
+      .then((product) => {
+        dispatch({
+          type: GET_PRODUCT,
+          product: product.data,
+        });
       });
-    });
   };
 };
 
@@ -38,7 +40,7 @@ export const getProduct = (id) => {
 export const getProductsCategory = (id) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3000/products/category/?id=${id}`)
+      .get(`https://apivivero.herokuapp.com/products/category/?id=${id}`)
       .then((res) => {
         dispatch({
           type: GET_PRODUCTS_CATEGORY,
@@ -51,18 +53,20 @@ export const getProductsCategory = (id) => {
 //Agrega un producto al back y dispatchea action para recargar store de products
 export const addProduct = (data) => {
   return (dispatch) => {
-    axios.post("http://localhost:3000/products", data).then((product) => {
-      dispatch({
-        type: ADD_PRODUCT,
-        product: product.data,
+    axios
+      .post("https://apivivero.herokuapp.com/products", data)
+      .then((product) => {
+        dispatch({
+          type: ADD_PRODUCT,
+          product: product.data,
+        });
       });
-    });
   };
 };
 
 export const deleteProduct = (id) => {
   return (dispatch) => {
-    axios.delete(`http://localhost:3000/products/${id}`).then(
+    axios.delete(`https://apivivero.herokuapp.com/products/${id}`).then(
       dispatch({
         type: DELETE_PRODUCT,
         id,
@@ -73,19 +77,21 @@ export const deleteProduct = (id) => {
 
 export const editProduct = (id, data) => {
   return (dispatch) => {
-    axios.put(`http://localhost:3000/products/${id}`, data).then((product) => {
-      dispatch({
-        type: EDIT_PRODUCT,
-        product: product.data,
+    axios
+      .put(`https://apivivero.herokuapp.com/products/${id}`, data)
+      .then((product) => {
+        dispatch({
+          type: EDIT_PRODUCT,
+          product: product.data,
+        });
       });
-    });
   };
 };
 
 export const searchProduct = (query) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3000/search?valor=${query}`)
+      .get(`https://apivivero.herokuapp.com/search?valor=${query}`)
       .then((products) => {
         dispatch({
           type: SEARCH_PRODUCT,

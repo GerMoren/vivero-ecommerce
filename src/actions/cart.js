@@ -19,13 +19,15 @@ export const getCart = (localCart) => {
 //Esto se puede hacer con dos promesas y hacer promise all
 export const fetchCartFromDb = (idUser) => {
   return (dispatch) => {
-    axios.get(`http://localhost:3000/users/${idUser}/cart`).then((res) => {
-      dispatch({
-        type: FETCH_FROM_DB,
-        products: res.data.products,
-        orderId: res.data.id,
+    axios
+      .get(`https://apivivero.herokuapp.com/users/${idUser}/cart`)
+      .then((res) => {
+        dispatch({
+          type: FETCH_FROM_DB,
+          products: res.data.products,
+          orderId: res.data.id,
+        });
       });
-    });
   };
 };
 
@@ -37,7 +39,7 @@ export const addToCart = (product, idUser) => {
       quantity: 1,
       price: product.price,
     };
-    axios.post(`http://localhost:3000/users/${idUser}/cart`, data);
+    axios.post(`https://apivivero.herokuapp.com/users/${idUser}/cart`, data);
   }
   return {
     type: ADD_TO_CART,
@@ -48,7 +50,9 @@ export const addToCart = (product, idUser) => {
 //Si mandan idUser hago delete al server sino no (para localstorage)???
 export const removeFromCart = (productId, idUser) => {
   if (idUser) {
-    axios.delete(`http://localhost:3000/users/${idUser}/cart/${productId}`);
+    axios.delete(
+      `https://apivivero.herokuapp.com/users/${idUser}/cart/${productId}`
+    );
   }
   return {
     type: REMOVE_FROM_CART,
@@ -63,7 +67,7 @@ export const setQuantity = (productId, qty, idUser) => {
       quantity: qty,
       idProducto: productId,
     };
-    axios.put(`http://localhost:3000/users/${idUser}/cart`, data);
+    axios.put(`https://apivivero.herokuapp.com/users/${idUser}/cart`, data);
   }
   return {
     type: SET_QUANTITY,
@@ -75,7 +79,7 @@ export const setQuantity = (productId, qty, idUser) => {
 //Si mandan idUser hago delete al server sino no (para localstorage)
 export const emptyCart = (idUser) => {
   if (idUser) {
-    axios.delete(`http://localhost:3000/users/${idUser}/cart`);
+    axios.delete(`https://apivivero.herokuapp.com/users/${idUser}/cart`);
   }
   return {
     type: EMPTY_CART,
