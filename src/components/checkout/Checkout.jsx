@@ -139,9 +139,12 @@ export default function Checkout(props) {
   const updateStock = (products) => {
     products.forEach((product) => {
       let stock = product.stock - product.quantity;
-      axios.put(`http://localhost:3000/products/${product.id}/stock`, {
-        stock,
-      });
+      axios.put(
+        `https://apivivero.herokuapp.com/products/${product.id}/stock`,
+        {
+          stock,
+        }
+      );
     });
   };
 
