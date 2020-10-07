@@ -101,7 +101,7 @@ export default function Navbar({ onSearch, botonNav }) {
 
   useEffect(() => {
     axios
-      .get(`https://apivivero.herokuapp.com/me`, { withCredentials: true })
+      .get(`https://apivivero.herokuapp.com/auth/me`, { withCredentials: true })
       .then((res) => {
         if (res.data.googleId) {
           setNombre(res.data.name);
