@@ -209,7 +209,7 @@ export default function Me() {
   const [orders, setOrders] = useState();
   useEffect(() => {
     axios
-      .get(`https://apivivero.herokuapp.com/me`, { withCredentials: true })
+      .get(`https://apivivero.herokuapp.com/auth/me`, { withCredentials: true })
       .then((res) => {
         setUser(res.data);
       });
